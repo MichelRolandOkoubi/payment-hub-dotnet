@@ -1,4 +1,4 @@
-# 💳 Fintech Payment Hub — DDD/CQRS Enterprise
+# 💳 Fintech Payment Hub (DDD/CQRS)
 
 [![.NET 10](https://img.shields.io/badge/.NET-10.0-512bd4?logo=dotnet)](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 [![Next.js 14](https://img.shields.io/badge/Next.js-14.0-000000?logo=next.js)](https://nextjs.org/)
