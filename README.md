@@ -70,4 +70,4 @@ docker-compose up --build
 
 ---
 
-*Built with passion for modern fintech engineering.*
+
