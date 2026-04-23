@@ -1,0 +1,61 @@
+services:
+  payment-api:
+    build:
+      context: .
+      dockerfile: src/Services/PaymentService/PaymentService.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Postgres=Host=postgres;Database=payments;Username=admin;Password=secret
+      - ConnectionStrings__Redis=redis:6379
+      - Kafka__BootstrapServers=kafka:9092
+    ports:
+      - "5001:8080"
+    depends_on:
+      - postgres
+      - redis
+      - kafka
+
+  fraud-service:
+    build:
+      context: .
+      dockerfile: src/Services/FraudDetectionService/Dockerfile
+    environment:
+      - OpenAI__ApiKey=${OPENAI_API_KEY}
+      - SemanticKernel__Model=gpt-4o-mini
+    depends_on:
+      - kafka
+
+  yarp-gateway:
+    build:
+      context: .
+      dockerfile: src/ApiGateway.YARP/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ReverseProxy__Clusters__payment__Destinations__d1__Address=http://payment-api:8080
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    environment:
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181

@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ApiGateway.YARP/ApiGateway.YARP.csproj" />
+  </Folder>
+  <Folder Name="/src/BuildingBlocks/" />
+  <Folder Name="/src/BuildingBlocks/Messaging/">
+    <Project Path="src/BuildingBlocks/Messaging/BuildingBlocks.Messaging.csproj" />
+  </Folder>
+  <Folder Name="/src/BuildingBlocks/Observability/">
+    <Project Path="src/BuildingBlocks/Observability/BuildingBlocks.Observability.csproj" />
+  </Folder>
+  <Folder Name="/src/BuildingBlocks/Security/">
+    <Project Path="src/BuildingBlocks/Security/BuildingBlocks.Security.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/">
+    <Project Path="src/Services/FraudDetectionService/FraudDetectionService.csproj" />
+    <Project Path="src/Services/LedgerService/LedgerService.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/PaymentService/">
+    <Project Path="src/Services/PaymentService/PaymentService.API/PaymentService.API.csproj" />
+    <Project Path="src/Services/PaymentService/PaymentService.Application/PaymentService.Application.csproj" />
+    <Project Path="src/Services/PaymentService/PaymentService.Domain/PaymentService.Domain.csproj" />
+    <Project Path="src/Services/PaymentService/PaymentService.Infrastructure/PaymentService.Infrastructure.csproj" />
+  </Folder>
+</Solution>
